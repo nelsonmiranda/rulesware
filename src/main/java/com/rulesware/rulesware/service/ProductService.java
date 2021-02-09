@@ -7,6 +7,8 @@ import com.rulesware.rulesware.entity.Product;
 public interface ProductService {
 
 	List<Product> retrieveAll();
+
+	Product retrieveById(Long id);
 	
-	List<Product> retrieveByCategory(String category);
+	Product addProduct(Product product);
 }

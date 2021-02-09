@@ -12,30 +12,26 @@ public class Product {
 	@GeneratedValue
 	@Column(name = "id")
 	private Long id;
-
-	@Column(name = "name")
+	
+	@Column(name = "name", nullable = false)
 	private String name;
 
 	@Column(name = "description")
 	private String description;
 
-	@Column(name = "price")
+	@Column(name = "price", nullable = false)
 	private float price;
-
-	@Column(name = "category")
-	private String category;
 
 	public Product() {
 		super();
 	}
 
-	public Product(Long id, String name, String description, float price, String category) {
+	public Product(Long id, String name, String description, float price) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.price = price;
-		this.category = category;
 	}
 
 	public Long getId() {
@@ -70,18 +66,9 @@ public class Product {
 		this.price = price;
 	}
 
-	public String getCategory() {
-		return category;
-	}
-
-	public void setCategory(String category) {
-		this.category = category;
-	}
-
 	@Override
 	public String toString() {
-		return "Product [id=" + id + ", name=" + name + ", description=" + description + ", price=" + price
-				+ ", category=" + category + "]";
+		return "Product [id=" + id + ", name=" + name + ", description=" + description + ", price=" + price + "]";
 	}
 
 }

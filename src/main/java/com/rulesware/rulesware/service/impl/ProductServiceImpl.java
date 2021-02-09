@@ -22,9 +22,14 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public List<Product> retrieveByCategory(String category) {
+	public Product addProduct(Product product) {
 		// TODO Auto-generated method stub
-		return productRepository.findByCategory(category);
+		return productRepository.save(product);
 	}
 
+	@Override
+	public Product retrieveById(Long id) {
+		// TODO Auto-generated method stub
+		return productRepository.findById(id).orElse(null);
+	}
 }
