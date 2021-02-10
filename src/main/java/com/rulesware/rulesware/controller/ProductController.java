@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,7 +33,7 @@ public class ProductController {
 	}
 	
 	@PostMapping("/products")
-	public ResponseEntity<Void> addProduct(@RequestBody Product newProduct){
+	public ResponseEntity<Product> addProduct(@RequestBody Product newProduct){
 		
 		if(newProduct.getName() == null || newProduct.getPrice() <= 0)
 			return ResponseEntity.badRequest().build();
@@ -43,10 +44,12 @@ public class ProductController {
 			return ResponseEntity.noContent().build();
 		
 		//Sucess - URI of the new resource in the Response Header
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path(
-				"/{productId}").buildAndExpand(product.getId()).toUri();
+		/*
+		 * URI location = ServletUriComponentsBuilder.fromCurrentRequest().path(
+		 * "/{productId}").buildAndExpand(product.getId()).toUri();
+		 */
 		
 		//Status - Created
-		return ResponseEntity.created(location).build();
+		return new ResponseEntity<Product>(product, HttpStatus.CREATED);
  	}
 }
